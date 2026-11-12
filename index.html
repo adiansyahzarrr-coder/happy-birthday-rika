@@ -1,0 +1,1581 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Special 💗</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff0f5;
+    color: #75465b;
+    overflow-x: hidden;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 25px 15px;
+    text-align: center;
+    opacity: 0;
+}
+
+.screen.active {
+    display: block;
+    animation: pageEnter .7s ease forwards;
+}
+
+.screen.leaving {
+    display: block;
+    animation: pageExit .4s ease forwards;
+    pointer-events: none;
+}
+
+#passwordScreen.active {
+    display: flex;
+}
+
+#passwordScreen.leaving {
+    display: flex;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes pageExit {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px) scale(.97);
+    }
+}
+
+h1 {
+    color: #e66b9a;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+.main-btn {
+    background: #ec82aa;
+    color: white;
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    margin-top: 22px;
+    box-shadow: 0 5px 12px #e8a0bd55;
+    transition: .3s;
+}
+
+.main-btn:hover {
+    background: #d95789;
+    transform: scale(1.04);
+}
+
+/* PASSWORD */
+
+#passwordScreen {
+    background: linear-gradient(135deg, #ffc4d8, #ffe6ef);
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background: white;
+    padding: 30px 22px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 390px;
+    box-shadow: 0 10px 35px #c76c9060;
+}
+
+.login-card h1 {
+    font-size: 27px;
+}
+
+.password-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.password-option {
+    padding: 13px;
+    background: #ffe3ed;
+    color: #a84e73;
+    border-radius: 15px;
+    font-size: 15px;
+    transition: .2s;
+}
+
+.password-option:hover {
+    background: #f6a8c4;
+    transform: scale(1.03);
+}
+
+#passwordMessage {
+    margin-top: 17px;
+    color: #e04e79;
+    font-weight: bold;
+    min-height: 25px;
+}
+
+/* GALERI */
+
+.content {
+    max-width: 850px;
+    margin: auto;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 25px auto;
+}
+
+.photo-frame {
+    background: white;
+    padding: 9px 9px 18px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #d98ba755;
+    transform: rotate(-2deg);
+    transition: .3s;
+}
+
+.photo-frame:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.photo-frame:hover {
+    transform: rotate(0) scale(1.04);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.photo-frame:last-child {
+    grid-column: 1 / -1;
+}
+
+/* UCAPAN */
+
+.message-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 25px auto;
+    text-align: left;
+    box-shadow: 0 5px 20px #d98ba733;
+}
+
+.message-card h3 {
+    color: #e66b9a;
+    margin: 18px 0 8px;
+}
+  
+.message-card p,
+.message-card h3 {
+    visibility: hidden;
+}
+
+.message-card p {
+    margin-bottom: 10px;
+    white-space: pre-line;
+    line-height: 1.9;
+    min-height: 1em;
+}
+
+
+/* QUIZ */
+
+.quiz-card {
+    background: white;
+    padding: 25px;
+    max-width: 500px;
+    margin: 25px auto;
+    border-radius: 22px;
+    box-shadow: 0 5px 20px #d98ba733;
+}
+
+.quiz-card input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 20px;
+    border: 2px solid #f5b6cc;
+    border-radius: 12px;
+    outline: none;
+    font-size: 15px;
+}
+
+.quiz-card input:focus {
+    border-color: #e66b9a;
+}
+
+.quiz-card input:disabled {
+    background: #fff0f5;
+    color: #75465b;
+}
+
+.quiz-message {
+    min-height: 45px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.answer-btn {
+    background: #fbd5e2;
+    color: #a84e73;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 10px;
+    display: none;
+}
+
+/* PUZZLE */
+
+.puzzle-container {
+    max-width: 390px;
+    margin: 25px auto;
+}
+
+.puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    aspect-ratio: 1;
+    background: white;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+.puzzle-tile {
+    background-image: url('puzzle.jpg');
+    background-size: 300% 300%;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.puzzle-tile.selected {
+    border: 4px solid #e66b9a;
+    transform: scale(.94);
+}
+
+#puzzleMessage {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* BALON */
+
+#celebrationScreen {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffe3ed, #fff);
+}
+
+.balloon {
+    position: fixed;
+    bottom: -100px;
+    width: 35px;
+    height: 45px;
+    border-radius: 50%;
+    z-index: 10;
+    animation: balloonUp 3s linear forwards;
+    pointer-events: none;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 35px;
+    background: #b98b9d;
+    top: 44px;
+    left: 17px;
+}
+
+@keyframes balloonUp {
+    to {
+        transform: translateY(-120vh) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+.pop {
+    position: fixed;
+    z-index: 20;
+    font-size: 25px;
+    pointer-events: none;
+    animation: pop .8s ease-out forwards;
+}
+
+@keyframes pop {
+    to {
+        transform: scale(3) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* BUNGA */
+
+.flower {
+    font-size: 25px;
+    margin: 45px 0 25px;
+    transform: scale(.1);
+    transition: transform 2s ease;
+}
+
+.flower.grow {
+    transform: scale(5);
+    margin: 100px 0;
+}
+
+#questionArea {
+    margin-top: 35px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#questionArea.show {
+    opacity: 1;
+}
+
+.choice-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 25px;
+    min-height: 65px;
+    flex-wrap: wrap;
+}
+
+.choice-btn {
+    padding: 12px 30px;
+    border-radius: 25px;
+    background: #ed83aa;
+    color: white;
+    font-size: 16px;
+}
+
+#noBtn {
+    background: #b7a0ad;
+    position: relative;
+    transition: transform .25s;
+}
+
+/* HALAMAN AKHIR */
+
+#finalScreen {
+    background: linear-gradient(135deg, #ffe3ed, white);
+    position: relative;
+    overflow: hidden;
+}
+
+.final-balloon {
+    position: fixed;
+    left: -70px;
+    font-size: 40px;
+    animation: cross 7s linear infinite;
+    pointer-events: none;
+    z-index: 5;
+}
+
+@keyframes cross {
+    from {
+        left: -70px;
+    }
+    to {
+        left: 110%;
+    }
+}
+
+@media(max-width: 480px) {
+    .photo-frame img {
+        height: 145px;
+    }
+
+    .gallery {
+        gap: 10px;
+    }
+
+    .message-card {
+        padding: 20px;
+    }
+}
+
+  
+
+  /* ANIMASI FOTO KELIMA DI DALAM BINGKAI */
+
+.photo-frame:last-child img {
+    animation: photoImageFloat 3s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes photoImageFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+/* =================================
+   HALAMAN KUE ULANG TAHUN
+================================= */
+
+.candle-screen {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe5ef, #fff5f8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    overflow: hidden;
+}
+
+.candle-title {
+    color: #d85f91;
+    font-size: 25px;
+    margin-bottom: 12px;
+    animation: titleAppear 1.5s ease;
+}
+
+.candle-subtitle {
+    color: #936477;
+    margin-bottom: 35px;
+}
+
+.cake-container {
+    transform: scale(0.2);
+    opacity: 0;
+    animation: cakeGrow 2s ease forwards;
+}
+
+@keyframes cakeGrow {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.cake {
+    position: relative;
+    width: 190px;
+    height: 125px;
+    margin: auto;
+}
+
+.cake-top {
+    position: absolute;
+    top: 35px;
+    width: 190px;
+    height: 35px;
+    background: #ffb6ce;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.cake-body {
+    position: absolute;
+    top: 50px;
+    width: 190px;
+    height: 70px;
+    background: #f28bad;
+    border-radius: 10px 10px 22px 22px;
+    box-shadow: inset 0 -12px #dc6f96;
+}
+
+.cake-bottom {
+    position: absolute;
+    bottom: -12px;
+    width: 210px;
+    height: 23px;
+    left: -10px;
+    background: #fff0f5;
+    border-radius: 50%;
+}
+
+.candle {
+    position: absolute;
+    top: -12px;
+    left: 88px;
+    width: 13px;
+    height: 50px;
+    background: repeating-linear-gradient(
+        45deg,
+        white,
+        white 5px,
+        #ff8eb6 5px,
+        #ff8eb6 10px
+    );
+    border-radius: 4px;
+    z-index: 3;
+}
+
+.flame {
+    position: absolute;
+    top: -30px;
+    left: 2px;
+    width: 10px;
+    height: 18px;
+    background: #ffb52e;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 0 15px #ffbd48;
+    animation: flameMove .5s infinite alternate;
+}
+
+@keyframes flameMove {
+    from { transform: scale(1) rotate(-8deg); }
+    to { transform: scale(1.15) rotate(8deg); }
+}
+
+.flame.off {
+    display: none;
+}
+
+.smoke {
+    display: none;
+    position: absolute;
+    top: -48px;
+    left: 0;
+    font-size: 25px;
+}
+
+.smoke.show {
+    display: block;
+    animation: smokeUp 1.5s ease forwards;
+}
+
+@keyframes smokeUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-45px);
+    }
+}
+
+.candle-button {
+    margin-top: 65px;
+    padding: 15px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #e879a3;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px #e879a355;
+    cursor: pointer;
+    touch-action: none;
+}
+
+.candle-button:active {
+    background: #ce5c89;
+}
+
+.candle-hint {
+    color: #a36c83;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+@keyframes titleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+  
+<!-- HALAMAN KUE ULANG TAHUN -->
+
+<div id="candleScreen" class="screen active candle-screen">
+
+    <h1 class="candle-title">
+        Selamat Datang sayangggg💗
+    </h1>
+
+    <p class="candle-subtitle">
+        Silahkan matikan lilin nya ya cantik 🎂
+    </p>
+
+    <div class="cake-container">
+
+        <div class="cake">
+
+            <div class="candle">
+
+                <div class="flame" id="candleFlame"></div>
+
+                <div class="smoke" id="candleSmoke">
+                    💨
+                </div>
+
+            </div>
+
+            <div class="cake-top"></div>
+            <div class="cake-body"></div>
+            <div class="cake-bottom"></div>
+
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        class="candle-button"
+        id="candleButton"
+    >
+        🕯️ Matikan Lilin
+    </button>
+
+    <p class="candle-hint" id="candleHint">
+        Tekan dan tahan tombol selama 2 detik 💗
+    </p>
+
+</div>
+
+
+<!-- 1. PASSWORD -->
+
+<section id="passwordScreen" class="screen active">
+
+    <div class="login-card">
+
+        <h1>Hai, Kamu! 💗</h1>
+
+        <p>
+            Sebelum masuk, coba pilih password
+            yang menurut kamu benar ya!
+        </p>
+
+        <div class="password-list">
+
+            <button class="password-option"
+                onclick="checkPassword('salah')">
+                13-10-2026
+            </button>
+
+            <button class="password-option"
+                onclick="checkPassword('benar')">
+                13-11-2026
+            </button>
+
+            <button class="password-option"
+                onclick="checkPassword('salah')">
+                13-05-2026
+            </button>
+
+            <button class="password-option"
+                onclick="checkPassword('salah')">
+                semua benar
+            </button>
+
+        </div>
+
+        <div id="passwordMessage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- 2. GALERI DAN UCAPAN -->
+
+<section id="galleryScreen" class="screen">
+
+    <div class="content">
+
+        <h1>Happy Birthday! 🎂</h1>
+
+        <p>
+            Hari ini adalah hari spesial untuk kamu
+            yang sangat berarti. 💗
+        </p>
+
+        <div class="gallery">
+
+            <div class="photo-frame">
+                <img src="foto1.jpg" alt="Foto 1">
+            </div>
+
+            <div class="photo-frame">
+                <img src="foto2.jpg" alt="Foto 2">
+            </div>
+
+            <div class="photo-frame">
+                <img src="foto3.jpg" alt="Foto 3">
+            </div>
+
+            <div class="photo-frame">
+                <img src="foto4.jpg" alt="Foto 4">
+            </div>
+
+            <div class="photo-frame">
+                <img src="foto5.jpg" alt="Foto 5">
+            </div>
+
+        </div>
+
+        <div class="message-card">
+
+            <h3>💌 Ucapan</h3>
+
+            <p>
+                Selamat ulang tahun sayanggggg
+                hari ini menjadi hari yang baik buat kamu hari ini hari dimana kamu lahir ke bumi ini dan hari ini harus menjadi hari yang bahagia untuk dirimu sendiri selamat ulang tahun sayangggg versi inggris nya happy birthday versi sunda wilujeng tepang taun hehe
+
+                
+                
+            </p>
+
+            <h3>💕 Pesan</h3>
+
+            <p>
+                Terima kasih sudah hadir dan menjadi
+                bagian dari cerita hidup aku.
+
+                Jangan pernah merasa sendirian,
+                karena aku selalu berharap kita bisa
+                saling mendukung satu sama lain.
+
+                terima kasih sidah menjadi yang terbaik menjadi pasangan aku sudah memilih aku dan bahkan selalu stay dengan ku iam so happy with you
+            </p>
+
+            <h3>🌷 Harapan</h3>
+
+            <p>
+                Semoga semua hal yang sedang kamu perjuangkan
+                bisa tercapai satu per satu.
+
+                Semoga kamu selalu diberikan kebahagiaan
+                dan dikelilingi orang-orang baik.
+            </p>
+
+            <h3>🤲 Doa</h3>
+
+            <p>
+                Semoga panjang umur, sehat selalu,
+                dimudahkan segala urusannya,
+                dilancarkan rezekinya, dan selalu
+                diberikan kebahagiaan untuk tersenyum semua doa yang aku panjatkan untuk mu selalu yang terbaik pokonya bahagia selalu ya cantikk.
+            </p>
+
+        </div>
+
+        <button class="main-btn"
+            onclick="showScreen('quizScreen')">
+            Lanjut 💗
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 3. MINI QUIZ -->
+
+<section id="quizScreen" class="screen">
+
+    <h1>Mini Quiz For You 💕</h1>
+
+    <p>
+        Sebelum lanjut, jawab dua pertanyaan
+        romantis dari aku ya!
+    </p>
+
+    <div class="quiz-card">
+
+        <h3 id="questionNumber">Pertanyaan 1 dari 2</h3>
+
+        <p id="questionText" style="margin-top:20px">
+            apa yang lebih manis dari gula
+        </p>
+
+        <input
+            type="text"
+            id="quizInput"
+            placeholder="Tulis jawaban kamu di sini..."
+        >
+
+        <br>
+
+        <button class="main-btn" id="submitAnswer"
+            onclick="checkAnswer()">
+            Kirim Jawaban
+        </button>
+
+        <div class="quiz-message" id="quizMessage"></div>
+
+        <button
+            class="answer-btn"
+            id="answerButton"
+            onclick="showAnswer()">
+            Jawaban di sini 💡
+        </button>
+
+    </div>
+
+    <button
+        class="main-btn"
+        id="quizNext"
+        style="display:none"
+        onclick="showScreen('puzzleScreen')">
+        Lanjut ke Puzzle 🧩
+    </button>
+
+</section>
+
+
+<!-- 4. PUZZLE -->
+
+<section id="puzzleScreen" class="screen">
+
+    <h1>Little Puzzle For You 🧩</h1>
+
+    <p>
+        Susun potongan gambar sampai menjadi
+        gambar yang benar!
+    </p>
+
+    <p style="margin-top:10px;font-size:13px">
+        Cara bermain: pilih dua potongan untuk
+        menukar posisinya.
+    </p>
+
+    <div class="puzzle-container">
+
+        <div class="puzzle-board" id="puzzleBoard"></div>
+
+    </div>
+
+    <div id="puzzleMessage">
+        Yuk, selesaikan puzzle-nya! 💗
+    </div>
+
+</section>
+
+
+<!-- 5. KEJUTAN -->
+
+<section id="celebrationScreen" class="screen">
+
+    <h1>Surpriseeee!!! 🎉</h1>
+
+    <p>
+        Kamu berhasil menyelesaikan semuanya!
+    </p>
+
+    <div class="flower" id="flower">🌷</div>
+
+    <div id="questionArea">
+
+        <h2>
+            Apakah kamu menyukai ucapan ini? 💗
+        </h2>
+
+        <div class="choice-area">
+
+            <button class="choice-btn" onclick="chooseYes()">
+                Suka 💕
+            </button>
+
+            <button
+                class="choice-btn"
+                id="noBtn"
+                onmouseover="runAway()"
+                onclick="runAway()">
+                Tidak 😝
+            </button>
+
+        </div>
+
+        <p id="noMessage" style="margin-top:20px"></p>
+
+    </div>
+
+</section>
+
+
+<!-- 6. HALAMAN AKHIR -->
+
+<section id="finalScreen" class="screen">
+
+    <h1>Terima Kasih! 💗</h1>
+
+    <h2 style="margin-top:30px">
+        Happy Birthday, My Favorite Person!
+    </h2>
+
+    <p style="margin-top:20px">
+        Semoga kamu selalu bahagia.
+        Terima kasih sudah membaca semua
+        pesan kecil dari aku.
+    </p>
+
+    <p style="margin-top:20px">
+        You are special. 🌷💕
+    </p>
+
+    <button class="main-btn" onclick="finishWebsite()">
+        Selesai 💗
+    </button>
+
+</section>
+
+
+<script>
+
+// ======================================
+// PINDAH HALAMAN + ANIMASI
+// ======================================
+
+/** @param {string} id */
+function showScreen(id) {
+
+    const current = document.querySelector('.screen.active');
+    const next = document.getElementById(id);
+
+    if (!next || current === next) return;
+
+    if (current) {
+
+        current.classList.remove('active');
+        current.classList.add('leaving');
+
+        setTimeout(() => {
+
+            current.classList.remove('leaving');
+            current.style.display = 'none';
+
+        }, 400);
+
+    }
+
+    next.style.display =
+        id === 'passwordScreen' ? 'flex' : 'block';
+
+    next.classList.remove('leaving');
+
+    requestAnimationFrame(() => {
+        next.classList.add('active');
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+    if (id === 'galleryScreen') {
+        setTimeout(typeBirthdayMessage, 500);
+    }
+
+}
+
+
+// ======================================
+// PASSWORD
+// ======================================
+
+/** @param {string} value */
+function checkPassword(value) {
+
+    const message =
+        document.getElementById('passwordMessage');
+
+    if (value === 'benar') {
+
+        message.textContent =
+            'Yeay! Password benar 💗';
+
+        setTimeout(() => {
+            showScreen('galleryScreen');
+        }, 700);
+
+    } else {
+
+        message.textContent =
+            'Yah password nya salah 😝🤪';
+
+    }
+
+}
+
+
+// ======================================
+// ANIMASI MENGETIK UCAPAN
+// ======================================
+
+let typingRunning = false;
+
+async function typeBirthdayMessage() {
+
+    if (typingRunning) return;
+
+    typingRunning = true;
+
+    const elements = document.querySelectorAll(
+        '.message-card h3, .message-card p'
+    );
+
+    for (const element of elements) {
+
+        const originalText =
+             
+            element.dataset.original ||
+            element.textContent;
+
+        
+      element.dataset.original = originalText;
+      element.textContent = '';
+      element.style.visibility = 'visible';
+
+        for (const character of Array.from(originalText)) {
+
+            element.textContent += character;
+
+            await new Promise(resolve =>
+                setTimeout(resolve, 22)
+            );
+
+        }
+
+        await new Promise(resolve =>
+            setTimeout(resolve, 350)
+        );
+
+    }
+
+    typingRunning = false;
+
+}
+
+
+// ======================================
+// MINI QUIZ
+// ======================================
+
+const questions = [
+
+    {
+        question:
+            'Apa yang lebih manis dari gula?',
+
+        answer:
+            'Senyummu, karena senyummu membuat aku tergila gila.',
+
+        keywords: ['senyummu', 'senyum']
+    },
+
+    {
+        question:
+            'apa yang lebih berharga dari harta?',
+
+        answer:
+            'kamu,keren memiliki kamu adalah harta yang tidak bisa tergantikan.',
+
+        keywords: ['kamu', 'harta']
+    }
+
+];
+
+let currentQuestion = 0;
+let wrongAttempts = 0;
+let questionPassed = false;
+
+
+/** Memuat pertanyaan quiz */
+function loadQuestion() {
+
+    document.getElementById('questionNumber').textContent =
+        `Pertanyaan ${currentQuestion + 1} dari 2`;
+
+    document.getElementById('questionText').textContent =
+        questions[currentQuestion].question;
+
+    const input =
+        document.getElementById('quizInput');
+
+    input.value = '';
+    input.disabled = false;
+    input.style.display = 'block';
+
+    document.getElementById('submitAnswer')
+        .style.display = 'inline-block';
+
+    document.getElementById('submitAnswer')
+        .disabled = false;
+
+    document.getElementById('quizMessage')
+        .textContent = '';
+
+    document.getElementById('answerButton')
+        .style.display = 'none';
+
+    document.getElementById('quizNext')
+        .style.display = 'none';
+
+    questionPassed = false;
+    wrongAttempts = 0;
+
+}
+
+
+// ======================================
+// PERIKSA JAWABAN
+// ======================================
+
+function checkAnswer() {
+
+    if (questionPassed) return;
+
+    const input =
+        document.getElementById('quizInput');
+
+    const answer =
+        input.value.trim().toLowerCase();
+
+    const message =
+        document.getElementById('quizMessage');
+
+    if (answer.length === 0) {
+
+        message.textContent =
+            'Isi jawabannya dulu ya! 💗';
+
+        return;
+
+    }
+
+    const keywords =
+        questions[currentQuestion].keywords;
+
+    const correct = keywords.some(word =>
+        answer.includes(word)
+    );
+
+    if (correct) {
+
+        questionPassed = true;
+
+        input.disabled = true;
+
+        document.getElementById('submitAnswer')
+            .disabled = true;
+
+        message.textContent =
+            'Wah benar! Kamu hebat! 💕';
+
+        setTimeout(() => {
+            nextQuestion();
+        }, 2800);
+
+    } else {
+
+        wrongAttempts++;
+
+        if (wrongAttempts >= 3) {
+
+            input.disabled = true;
+
+            document.getElementById('submitAnswer')
+                .disabled = true;
+
+            message.textContent =
+                'Yah masih salah, coba lihat jawabannya 😝';
+
+            document.getElementById('answerButton')
+                .style.display = 'inline-block';
+
+        } else {
+
+            message.textContent =
+                `Belum tepat! Coba lagi ya. Kesempatan tersisa: ${3 - wrongAttempts}`;
+
+        }
+
+    }
+
+}
+
+
+// ======================================
+// TOMBOL LIHAT JAWABAN
+// ======================================
+
+function showAnswer() {
+
+    const message =
+        document.getElementById('quizMessage');
+
+    const input =
+        document.getElementById('quizInput');
+
+    input.disabled = true;
+
+    questionPassed = true;
+
+    document.getElementById('answerButton')
+        .style.display = 'none';
+
+    message.textContent =
+        'Jawaban: ' + questions[currentQuestion].answer;
+
+    setTimeout(() => {
+        nextQuestion();
+    }, 4500);
+
+}
+
+
+// ======================================
+// PINDAH KE SOAL BERIKUTNYA
+// ======================================
+
+function nextQuestion() {
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    } else {
+
+        document.getElementById('quizInput')
+            .style.display = 'none';
+
+        document.getElementById('submitAnswer')
+            .style.display = 'none';
+
+        document.getElementById('answerButton')
+            .style.display = 'none';
+
+        document.getElementById('quizNext')
+            .style.display = 'inline-block';
+
+        document.getElementById('questionNumber')
+            .textContent = 'Semua pertanyaan selesai! 💗';
+
+        document.getElementById('questionText')
+            .textContent =
+            'Sekarang waktunya kejutan berikutnya!';
+
+        document.getElementById('quizMessage')
+            .textContent =
+            'Kamu berhasil melewati mini quiz!';
+
+    }
+
+}
+
+
+// ======================================
+// PUZZLE 3 X 3
+
+// ======================================
+// PUZZLE 3 X 3
+// ======================================
+
+const board = document.getElementById('puzzleBoard');
+
+let pieces = [];
+let selectedTile = null;
+let puzzleCompleted = false;
+
+/** @param {number} piece */
+function getPosition(piece) {
+    const x = (piece % 3) * 50;
+    const y = Math.floor(piece / 3) * 50;
+    return `${x}% ${y}%`;
+}
+
+function createPuzzle() {
+    pieces = [0,1,2,3,4,5,6,7,8];
+
+    do {
+        for (let i = pieces.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [pieces[i], pieces[j]] = [pieces[j], pieces[i]];
+        }
+    } while (pieces.every((piece, index) => piece === index));
+
+    board.innerHTML = '';
+
+    pieces.forEach((piece) => {
+        const tile = document.createElement('div');
+
+        tile.className = 'puzzle-tile';
+        tile.dataset.piece = piece;
+        tile.style.backgroundPosition = getPosition(piece);
+
+        tile.addEventListener('click', () => {
+            selectTile(tile);
+        });
+
+        board.appendChild(tile);
+    });
+}
+
+/** @param {HTMLDivElement} tile */
+function selectTile(tile) {
+    if (puzzleCompleted) return;
+
+    if (selectedTile === null) {
+        selectedTile = tile;
+        tile.classList.add('selected');
+    } else {
+        const firstPiece = selectedTile.dataset.piece;
+        const secondPiece = tile.dataset.piece;
+
+        selectedTile.dataset.piece = secondPiece;
+        tile.dataset.piece = firstPiece;
+
+        selectedTile.style.backgroundPosition =
+            getPosition(Number(secondPiece));
+
+        tile.style.backgroundPosition =
+            getPosition(Number(firstPiece));
+
+        selectedTile.classList.remove('selected');
+        selectedTile = null;
+
+        checkPuzzle();
+    }
+}
+
+function checkPuzzle() {
+    const tiles = [...board.children];
+
+    const solved = tiles.every((tile, index) =>
+        Number(tile.dataset.piece) === index
+    );
+
+    if (solved) {
+        puzzleCompleted = true;
+
+        document.getElementById('puzzleMessage')
+            .textContent = 'YEAY! Puzzle berhasil diselesaikan! 🎉';
+
+        setTimeout(startCelebration, 1200);
+    }
+}
+
+// ======================================
+// KEJUTAN BALON
+// ======================================
+
+function startCelebration() {
+    showScreen('celebrationScreen');
+
+    for (let i = 0; i < 35; i++) {
+        setTimeout(() => {
+            const balloon = document.createElement('div');
+
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + 'vw';
+
+            balloon.style.background = [
+                '#ff85aa',
+                '#ffc1d6',
+                '#f6a6ff',
+                '#ffcf80',
+                '#b8a5ff'
+            ][Math.floor(Math.random() * 5)];
+
+            document.body.appendChild(balloon);
+
+            setTimeout(() => {
+                const rect = balloon.getBoundingClientRect();
+
+                const pop = document.createElement('div');
+                pop.className = 'pop';
+                pop.textContent = '✨💥';
+                pop.style.left = rect.left + 'px';
+                pop.style.top = rect.top + 'px';
+
+                document.body.appendChild(pop);
+                balloon.remove();
+
+                setTimeout(() => pop.remove(), 900);
+            }, 2500);
+
+        }, i * 100);
+    }
+
+    setTimeout(() => {
+        document.getElementById('flower')
+            .classList.add('grow');
+    }, 3500);
+
+    setTimeout(() => {
+        document.getElementById('questionArea')
+            .classList.add('show');
+    }, 5700);
+}
+
+// ======================================
+// PILIHAN SUKA / TIDAK
+// ======================================
+
+function runAway() {
+    const button = document.getElementById('noBtn');
+
+    const x = (Math.random() - 0.5) * 180;
+    const y = (Math.random() - 0.5) * 100;
+
+    button.style.transform = `translate(${x}px, ${y}px)`;
+
+    document.getElementById('noMessage')
+        .textContent = 'Ett tidak bisa 😝💗';
+}
+
+function chooseYes() {
+    showScreen('finalScreen');
+
+    for (let i = 0; i < 9; i++) {
+        const balloon = document.createElement('div');
+
+        balloon.className = 'final-balloon';
+        balloon.textContent = '🎈';
+        balloon.style.top = (10 + i * 10) + '%';
+        balloon.style.animationDelay = (i * 0.7) + 's';
+
+        document.getElementById('finalScreen')
+            .appendChild(balloon);
+    }
+}
+
+// ======================================
+// TOMBOL SELESAI
+// ======================================
+
+function finishWebsite() {
+    alert('Terima kasih sudah membuka kejutan kecil ini! 💗');
+    location.reload();
+}
+
+// ======================================
+// MULAI WEBSITE
+// ======================================
+
+loadQuestion();
+createPuzzle();
+
+  
+/* =================================
+   ANIMASI MATIKAN LILIN
+================================= */
+
+const candleButton =
+    document.getElementById('candleButton');
+
+const candleFlame =
+    document.getElementById('candleFlame');
+
+const candleSmoke =
+    document.getElementById('candleSmoke');
+
+const candleHint =
+    document.getElementById('candleHint');
+
+let candleTimer = null;
+let candleDone = false;
+
+candleButton.addEventListener('pointerdown', function(e) {
+    e.preventDefault();
+
+    if (candleDone) return;
+
+    candleHint.textContent = 'Terus tahan... 💗';
+
+    candleTimer = setTimeout(function() {
+
+        candleDone = true;
+
+        candleFlame.classList.add('off');
+        candleSmoke.classList.add('show');
+
+        candleHint.textContent =
+            'Yeay! Lilinnya sudah mati! 🎉';
+
+        candleButton.textContent = 'Lilin sudah padam 💗';
+        candleButton.disabled = true;
+
+        setTimeout(function() {
+            showScreen('passwordScreen');
+        }, 1800);
+
+    }, 2000);
+});
+
+function cancelCandle() {
+    if (candleTimer !== null && !candleDone) {
+        clearTimeout(candleTimer);
+        candleTimer = null;
+        candleHint.textContent =
+            'Tahan sedikit lebih lama ya! 💗';
+    }
+}
+
+candleButton.addEventListener('pointerup', cancelCandle);
+candleButton.addEventListener('pointerleave', cancelCandle);
+candleButton.addEventListener('pointercancel', cancelCandle);
+
+
+</script>
+
+</body>
+</html>
